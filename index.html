@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Baked &amp; Co. – Katalog Bakery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Radio tersembunyi untuk navigasi kategori -->
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c0" aria-label="Beranda" checked>
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c1" aria-label="Roti">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c2" aria-label="Pastri">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c3" aria-label="Kue">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c4" aria-label="Kue Cangkir">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c5" aria-label="Biskuit">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c6" aria-label="Biskuit Kering">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c7" aria-label="Mufin">
+  <input class="pilihan-tersembunyi" type="radio" name="kategori" id="c8" aria-label="Donat">
+
+  <main class="wadah-utama">
+
+    <!-- Navigasi kategori -->
+    <nav class="navigasi" aria-label="Kategori">
+      <label for="c1">Breads</label>
+      <label for="c2">Pastries</label>
+      <label for="c3">Cakes</label>
+      <label for="c4">Cupcakes</label>
+      <label for="c5">Cookies</label>
+      <label for="c6">Biscuits</label>
+      <label for="c7">Muffins</label>
+      <label for="c8">Doughnuts</label>
+    </nav>
+
+    <!-- Pencarian + petunjuk -->
+    <div class="pencarian">
+      <input type="search" placeholder="Cari kategori atau produk…" aria-label="Cari">
+      <div class="petunjuk">
+        <b>Kelompok 2 / XI 3.1</b>
+        <ol>
+          <li>Abigail Gracia Kirana / 1</li>
+          <li>Agnes Cara Chrisgenoveva / 20</li>
+          <li>Alexandra Vanny P. P. / 26</li>
+          <li>Richelle Jordan Hoo / 32</li>
+          <li>Arabella Syaqila Putri / 35</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Logo -->
+    <label class="logo" for="c0" title="Kembali ke beranda">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <circle cx="24" cy="24" r="21"/>
+        <path d="M24 38V14"/>
+        <path d="M24 20c-5 0-7-3-7-6 5 0 7 3 7 6zM24 20c5 0 7-3 7-6-5 0-7 3-7 6zM24 28c-5 0-7-3-7-6 5 0 7 3 7 6zM24 28c5 0 7-3 7-6-5 0-7 3-7 6zM24 36c-5 0-7-3-7-6 5 0 7 3 7 6zM24 36c5 0 7-3 7-6-5 0-7 3-7 6z"/>
+      </svg>
+      <span>Baked &amp; Co.</span>
+    </label>
+
+    <!-- Kontak -->
+    <div class="kontak">
+      <div>WhatsApp: <a href="https://wa.me/6281234567890">+62 812-3456-7890</a></div>
+      <div>Jl. Gandum Emas No. 12, Sleman, Yogyakarta</div>
+      <div>Buka setiap hari 06.00 – 21.00 WIB</div>
+      <div>Roti hangat keluar oven jam 06.00 dan 15.00</div>
+      <div>Instagram: <a href="https://instagram.com/bakedandco.id">@bakedandco.id</a></div>
+    </div>
+
+    <!-- ===== Beranda ===== -->
+    <section class="panggung beranda" id="s0">
+      <svg class="logo-beranda" aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <circle cx="24" cy="24" r="21"/>
+        <path d="M24 38V14"/>
+        <path d="M24 20c-5 0-7-3-7-6 5 0 7 3 7 6zM24 20c5 0 7-3 7-6-5 0-7 3-7 6zM24 28c-5 0-7-3-7-6 5 0 7 3 7 6zM24 28c5 0 7-3 7-6-5 0-7 3-7 6zM24 36c-5 0-7-3-7-6 5 0 7 3 7 6zM24 36c5 0 7-3 7-6-5 0-7 3-7 6z"/>
+      </svg>
+      <div class="judul-besar">BAKED &amp; CO.<small>BAKERY</small></div>
+    </section>
+
+    <!-- ===== Breads ===== -->
+    <section class="panggung" id="s1">
+      <div class="judul-besar">BREADS</div>
+
+      <input class="pilihan-tersembunyi" type="radio" name="p1" id="p1_0" checked aria-label="Sourdough">
+      <input class="pilihan-tersembunyi" type="radio" name="p1" id="p1_1" aria-label="Baguette">
+      <input class="pilihan-tersembunyi" type="radio" name="p1" id="p1_2" aria-label="Brioche">
+      <input class="pilihan-tersembunyi" type="radio" name="p1" id="p1_3" aria-label="Whole Wheat Bread">
+      <input class="pilihan-tersembunyi" type="radio" name="p1" id="p1_4" aria-label="Focaccia">
+      <input class="pilihan-tersembunyi" type="radio" name="p1" id="p1_5" aria-label="Ciabatta">
+
+      <div class="daftar-slide">
+        <figure class="slide-produk" id="sl1_0">
+          <label class="tombol-panah panah-sebelumnya" for="p1_5" aria-label="Sebelumnya">‹</label>
+          <span class="gambar-produk" role="img" aria-label="Foto Sourdough">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <ellipse cx="100" cy="118" rx="84" ry="62" fill="#b9772e" stroke="rgba(60,30,10,.35)" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M52 104q16-24 32-32M90 92q16-24 32-32M128 102q16-24 32-32" stroke="#f3dcae" stroke-width="10" stroke-linecap="round" fill="none"/>
+              <circle cx="54" cy="114" r="3" fill="#fff3dc"/><circle cx="110" cy="92" r="3" fill="#fff3dc"/>
+              <circle cx="143" cy="130" r="3" fill="#fff3dc"/><circle cx="86" cy="147" r="3" fill="#fff3dc"/>
+              <circle cx="126" cy="178" r="3" fill="#fff3dc"/><circle cx="59" cy="174" r="3" fill="#fff3dc"/>
+              <circle cx="95" cy="123" r="3" fill="#fff3dc"/><circle cx="148" cy="169" r="3" fill="#fff3dc"/>
+            </svg>
+          </span>
+          <figcaption class="nama-produk">Sourdough</figcaption>
+          <label class="tombol-panah panah-berikutnya" for="p1_1" aria-label="Berikutnya">›</label>
+          <span class="penghitung">1 / 6</span>
+        </figure>
+
+        <!-- SLIDE 1–5 lainnya: sama persis strukturnya,
+             hanya ID sl1_x, for=p1_x, dan SVG yang berbeda -->
+
+      </div>
+    </section>
+
+    <!-- ===== Pastries ===== -->
+    <section class="panggung" id="s2">
+      <div class="judul-besar">PASTRIES</div>
+      <!-- input p2_0..p2_5 dan daftar-slide sl2_0..sl2_5 -->
+    </section>
+
+    <!-- ... (Cakes s3, Cupcakes s4, Cookies s5,
+         Biscuits s6, Muffins s7, Doughnuts s8) ... -->
+
+  </main>
+</body>
+</html>
