@@ -1,0 +1,566 @@
+/* ============================================================
+   BAKED & CO. — style.css
+   Katalog bakery interaktif, CSS murni (tanpa JS, tanpa framework)
+   ============================================================ */
+
+/* ---------- Reset & Dasar ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Poppins, Montserrat, system-ui, sans-serif;
+  background: #3b2417;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- Input radio tersembunyi (untuk logika CSS) ---------- */
+.pilihan-tersembunyi {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Wadah Utama ---------- */
+.wadah-utama {
+  position: fixed;
+  inset: 0;
+  --fg: #f6ecd9;
+  --bg: #3b2417;
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.6s;
+}
+
+.wadah-utama[data-terang] {
+  --fg: #3b2417;
+}
+
+/* ---------- Elemen tetap di atas ---------- */
+.navigasi,
+.pencarian,
+.logo,
+.kontak {
+  position: absolute;
+  z-index: 5;
+}
+
+/* ---------- Navigasi kategori ---------- */
+.navigasi {
+  top: 28px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navigasi label {
+  cursor: pointer;
+  font-size: 0.95rem;
+  opacity: 0.65;
+  padding: 2px 0;
+  transition: 0.3s;
+}
+
+.navigasi label:hover {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ---------- Pencarian ---------- */
+.pencarian {
+  top: 24px;
+  right: 32px;
+  width: min(300px, 42vw);
+}
+
+.pencarian input {
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: 99px;
+  border: 1.5px solid var(--fg);
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.pencarian input::placeholder {
+  color: var(--fg);
+  opacity: 0.6;
+}
+
+/* ---------- Petunjuk (tooltip) ---------- */
+.petunjuk {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  width: max(100%, 260px);
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: 0.3s;
+}
+
+.pencarian:hover .petunjuk,
+.pencarian:focus-within .petunjuk {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.petunjuk b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.petunjuk ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  bottom: 28px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.logo svg {
+  width: 44px;
+  height: 44px;
+}
+
+/* ---------- Kontak ---------- */
+.kontak {
+  bottom: 28px;
+  right: 32px;
+  text-align: right;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.kontak a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Panggung (stage) ---------- */
+.panggung {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  animation: masuk 0.7s ease;
+}
+
+@keyframes masuk {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+/* ---------- Judul besar ---------- */
+.judul-besar {
+  position: absolute;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 17vw, 17rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-align: center;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
+/* ---------- Beranda ---------- */
+.beranda .judul-besar {
+  font-size: clamp(3rem, 13vw, 13rem);
+}
+
+.beranda .judul-besar small {
+  display: block;
+  font-size: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  margin-top: 0.6em;
+}
+
+.logo-beranda {
+  position: relative;
+  width: clamp(120px, 18vw, 220px);
+  height: auto;
+  margin-top: -30vh;
+}
+
+/* ---------- Slide produk ---------- */
+.slide-produk {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: masuk 0.5s ease;
+}
+
+.gambar-produk {
+  font-size: clamp(9rem, 32vw, 24rem);
+  line-height: 1;
+  filter: drop-shadow(0 28px 24px rgba(0, 0, 0, 0.35));
+}
+
+.nama-produk {
+  position: absolute;
+  bottom: 12vh;
+  font-weight: 600;
+  font-size: 1.15rem;
+  padding: 6px 20px;
+  border-radius: 99px;
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* ---------- Tombol panah ---------- */
+.tombol-panah {
+  position: absolute;
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fg);
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 6;
+}
+
+.tombol-panah:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.panah-sebelumnya {
+  left: 22%;
+}
+
+.panah-berikutnya {
+  right: 22%;
+}
+
+.penghitung {
+  position: absolute;
+  bottom: 7vh;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* ---------- Fokus aksesibel ---------- */
+:focus-visible + *,
+label:focus-visible {
+  outline: 2px solid currentColor;
+}
+
+/* ---------- SVG produk ---------- */
+.gambar-produk svg {
+  width: clamp(210px, 34vw, 400px);
+  height: auto;
+  display: block;
+}
+
+.gambar-produk {
+  font-size: 0;
+}
+
+/* ============================================================
+   ATURAN NAVIGASI KATEGORI (berdasarkan ID radio c0–c8)
+   ============================================================ */
+#c0:checked ~ .wadah-utama {
+  --bg: #3b2417;
+}
+#c0:checked ~ .wadah-utama #s0 {
+  display: flex;
+}
+#c0:checked ~ .wadah-utama .navigasi label[for="c0"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c0:focus-visible ~ .wadah-utama .navigasi label[for="c0"] {
+  outline: 2px solid currentColor;
+}
+
+#c1:checked ~ .wadah-utama {
+  --bg: #8a5a2b;
+}
+#c1:checked ~ .wadah-utama #s1 {
+  display: flex;
+}
+#c1:checked ~ .wadah-utama .navigasi label[for="c1"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c1:focus-visible ~ .wadah-utama .navigasi label[for="c1"] {
+  outline: 2px solid currentColor;
+}
+
+#c2:checked ~ .wadah-utama {
+  --bg: #a8742a;
+}
+#c2:checked ~ .wadah-utama #s2 {
+  display: flex;
+}
+#c2:checked ~ .wadah-utama .navigasi label[for="c2"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c2:focus-visible ~ .wadah-utama .navigasi label[for="c2"] {
+  outline: 2px solid currentColor;
+}
+
+#c3:checked ~ .wadah-utama {
+  --bg: #6f4a3a;
+}
+#c3:checked ~ .wadah-utama #s3 {
+  display: flex;
+}
+#c3:checked ~ .wadah-utama .navigasi label[for="c3"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c3:focus-visible ~ .wadah-utama .navigasi label[for="c3"] {
+  outline: 2px solid currentColor;
+}
+
+#c4:checked ~ .wadah-utama {
+  --bg: #9c6f52;
+}
+#c4:checked ~ .wadah-utama #s4 {
+  display: flex;
+}
+#c4:checked ~ .wadah-utama .navigasi label[for="c4"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c4:focus-visible ~ .wadah-utama .navigasi label[for="c4"] {
+  outline: 2px solid currentColor;
+}
+
+#c5:checked ~ .wadah-utama {
+  --bg: #4a2c1d;
+}
+#c5:checked ~ .wadah-utama #s5 {
+  display: flex;
+}
+#c5:checked ~ .wadah-utama .navigasi label[for="c5"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c5:focus-visible ~ .wadah-utama .navigasi label[for="c5"] {
+  outline: 2px solid currentColor;
+}
+
+/* Biscuits — tema terang */
+#c6:checked ~ .wadah-utama {
+  --fg: #3b2417;
+  --bg: #d8bf98;
+}
+#c6:checked ~ .wadah-utama #s6 {
+  display: flex;
+}
+#c6:checked ~ .wadah-utama .navigasi label[for="c6"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c6:focus-visible ~ .wadah-utama .navigasi label[for="c6"] {
+  outline: 2px solid currentColor;
+}
+
+#c7:checked ~ .wadah-utama {
+  --bg: #7a5230;
+}
+#c7:checked ~ .wadah-utama #s7 {
+  display: flex;
+}
+#c7:checked ~ .wadah-utama .navigasi label[for="c7"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c7:focus-visible ~ .wadah-utama .navigasi label[for="c7"] {
+  outline: 2px solid currentColor;
+}
+
+/* Doughnuts — tema terang */
+#c8:checked ~ .wadah-utama {
+  --fg: #3b2417;
+  --bg: #c9a37a;
+}
+#c8:checked ~ .wadah-utama #s8 {
+  display: flex;
+}
+#c8:checked ~ .wadah-utama .navigasi label[for="c8"] {
+  opacity: 1;
+  font-weight: 700;
+}
+#c8:focus-visible ~ .wadah-utama .navigasi label[for="c8"] {
+  outline: 2px solid currentColor;
+}
+
+/* ============================================================
+   ATURAN SLIDE PRODUK PER KATEGORI
+   Format: #pX_Y:checked ~ .daftar-slide #slX_Y { display:flex }
+   ============================================================ */
+
+/* Breads (p1) */
+#p1_0:checked ~ .daftar-slide #sl1_0 { display: flex; }
+#p1_1:checked ~ .daftar-slide #sl1_1 { display: flex; }
+#p1_2:checked ~ .daftar-slide #sl1_2 { display: flex; }
+#p1_3:checked ~ .daftar-slide #sl1_3 { display: flex; }
+#p1_4:checked ~ .daftar-slide #sl1_4 { display: flex; }
+#p1_5:checked ~ .daftar-slide #sl1_5 { display: flex; }
+
+/* Pastries (p2) */
+#p2_0:checked ~ .daftar-slide #sl2_0 { display: flex; }
+#p2_1:checked ~ .daftar-slide #sl2_1 { display: flex; }
+#p2_2:checked ~ .daftar-slide #sl2_2 { display: flex; }
+#p2_3:checked ~ .daftar-slide #sl2_3 { display: flex; }
+#p2_4:checked ~ .daftar-slide #sl2_4 { display: flex; }
+#p2_5:checked ~ .daftar-slide #sl2_5 { display: flex; }
+
+/* Cakes (p3) */
+#p3_0:checked ~ .daftar-slide #sl3_0 { display: flex; }
+#p3_1:checked ~ .daftar-slide #sl3_1 { display: flex; }
+#p3_2:checked ~ .daftar-slide #sl3_2 { display: flex; }
+#p3_3:checked ~ .daftar-slide #sl3_3 { display: flex; }
+#p3_4:checked ~ .daftar-slide #sl3_4 { display: flex; }
+#p3_5:checked ~ .daftar-slide #sl3_5 { display: flex; }
+
+/* Cupcakes (p4) */
+#p4_0:checked ~ .daftar-slide #sl4_0 { display: flex; }
+#p4_1:checked ~ .daftar-slide #sl4_1 { display: flex; }
+#p4_2:checked ~ .daftar-slide #sl4_2 { display: flex; }
+#p4_3:checked ~ .daftar-slide #sl4_3 { display: flex; }
+#p4_4:checked ~ .daftar-slide #sl4_4 { display: flex; }
+#p4_5:checked ~ .daftar-slide #sl4_5 { display: flex; }
+
+/* Cookies (p5) */
+#p5_0:checked ~ .daftar-slide #sl5_0 { display: flex; }
+#p5_1:checked ~ .daftar-slide #sl5_1 { display: flex; }
+#p5_2:checked ~ .daftar-slide #sl5_2 { display: flex; }
+#p5_3:checked ~ .daftar-slide #sl5_3 { display: flex; }
+#p5_4:checked ~ .daftar-slide #sl5_4 { display: flex; }
+#p5_5:checked ~ .daftar-slide #sl5_5 { display: flex; }
+
+/* Biscuits (p6) */
+#p6_0:checked ~ .daftar-slide #sl6_0 { display: flex; }
+#p6_1:checked ~ .daftar-slide #sl6_1 { display: flex; }
+#p6_2:checked ~ .daftar-slide #sl6_2 { display: flex; }
+#p6_3:checked ~ .daftar-slide #sl6_3 { display: flex; }
+#p6_4:checked ~ .daftar-slide #sl6_4 { display: flex; }
+#p6_5:checked ~ .daftar-slide #sl6_5 { display: flex; }
+
+/* Muffins (p7) */
+#p7_0:checked ~ .daftar-slide #sl7_0 { display: flex; }
+#p7_1:checked ~ .daftar-slide #sl7_1 { display: flex; }
+#p7_2:checked ~ .daftar-slide #sl7_2 { display: flex; }
+#p7_3:checked ~ .daftar-slide #sl7_3 { display: flex; }
+#p7_4:checked ~ .daftar-slide #sl7_4 { display: flex; }
+#p7_5:checked ~ .daftar-slide #sl7_5 { display: flex; }
+
+/* Doughnuts (p8) */
+#p8_0:checked ~ .daftar-slide #sl8_0 { display: flex; }
+#p8_1:checked ~ .daftar-slide #sl8_1 { display: flex; }
+#p8_2:checked ~ .daftar-slide #sl8_2 { display: flex; }
+#p8_3:checked ~ .daftar-slide #sl8_3 { display: flex; }
+#p8_4:checked ~ .daftar-slide #sl8_4 { display: flex; }
+#p8_5:checked ~ .daftar-slide #sl8_5 { display: flex; }
+
+/* ============================================================
+   RESPONSIF
+   ============================================================ */
+@media (max-width: 700px) {
+  .navigasi {
+    flex-direction: row;
+    overflow-x: auto;
+    left: 0;
+    right: 0;
+    top: 70px;
+    padding: 0 16px;
+    gap: 14px;
+    white-space: nowrap;
+  }
+
+  .pencarian {
+    left: 16px;
+    right: 16px;
+    top: 16px;
+    width: auto;
+  }
+
+  .petunjuk {
+    width: 100%;
+  }
+
+  .logo {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .logo span {
+    display: none;
+  }
+
+  .kontak {
+    right: 16px;
+    bottom: 16px;
+    font-size: 0.7rem;
+  }
+
+  .panah-sebelumnya {
+    left: 10px;
+  }
+
+  .panah-berikutnya {
+    right: 10px;
+  }
+
+  .tombol-panah {
+    width: 42px;
+    height: 42px;
+    top: 60%;
+  }
+
+  .nama-produk {
+    bottom: 18vh;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
+/* ---------- Kurangi animasi bagi pengguna yang memilih ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
